@@ -1,9 +1,6 @@
 language: java
 jdk: oraclejdk7
-env:
-  matrix:
-    - ANDROID_SDKS=android-10           ANDROID_TARGET=android-10  ANDROID_ABI=armeabi
-    - ANDROID_SDKS=android-17,sysimg-17 ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
+
 before_install:
   # Install base Android SDK
   - sudo apt-get update -qq
@@ -13,10 +10,10 @@ before_install:
   - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
-  - android update sdk --filter platform-tools,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
+  - android update sdk --filter platform-tools,extra-android-support,android-17,sysimg-17 --no-ui --force > /dev/null
 
   # Create and start emulator
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - echo no | android create avd --force -n test -t android-17 --abi armeabi-v7a
   - emulator -avd test -no-skin -no-audio -no-window &
 
 before_script:
