@@ -22,4 +22,4 @@ before_script:
 script:
   - ant debug install
   - cd TravisSampleTestTest
-  - ant debug install test
+  - ant instrument install test
