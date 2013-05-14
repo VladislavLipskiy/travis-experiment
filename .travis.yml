@@ -23,5 +23,6 @@ before_script:
   - ./wait_for_emulator
 
 script:
+  - ant debug install
   - cd TravisSampleTestTest
-  - ant test
+  - ant debug install test
